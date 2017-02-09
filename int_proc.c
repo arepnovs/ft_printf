@@ -27,12 +27,12 @@ long long	proc_len(va_list args, t_specs params)
     
     if(params.len)
     {
-        if (ft_strcmp(params.len, "hh") == 0)
+        if (ft_strcmp(params.len, "hh") == 0 && (params.type != 'D'))
         {
             c = (signed char)va_arg(args, int);
             return ((long long)c);
         }
-        else if (ft_strcmp(params.len, "h") == 0)
+        else if (ft_strcmp(params.len, "h") == 0 && (params.type != 'D'))
         {
             s_i = (short int)va_arg(args, int);
             return ((long long)s_i);
@@ -41,20 +41,21 @@ long long	proc_len(va_list args, t_specs params)
             return ((long long)va_arg(args, long));
         else if (ft_strcmp(params.len, "ll") == 0)
             return (va_arg(args, long long));
-        else if (params.type == 'p')
-            return ((long long)va_arg(args, void*));
     }
-    return ((long long)va_arg(args, int));
+    else if (params.type == 'p')
+        return ((long long)va_arg(args, void*));
+    return ((params.type == 'D') ? va_arg(args, long long) : (long long)va_arg(args, int));
 }
 
 
-void    print_int(va_list *args, t_specs params, t_flags flags)
+void    print_int(va_list *args, t_specs params, t_flags flags, int *ret)
 {
     long long f;
     char *res;
     char *str;
     
     f = proc_len(*args, params);
+    //printf("num = %lld\n", f);
     if(f < 0)
     {
         f = -f;
@@ -68,6 +69,8 @@ void    print_int(va_list *args, t_specs params, t_flags flags)
         res = ft_itoa_long(f, 8, params.type);
     //printf("ressss = |%s\n", res);
     str = proc_width(params, flags, res);
+    *ret = *ret + ft_strlen(str);
+    //printf("ret = |%d\n", *ret);
    // proc_flags(flags, params, str, res);
     printf("str = |%s\n", str);
 }

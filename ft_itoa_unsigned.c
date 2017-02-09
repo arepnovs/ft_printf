@@ -12,12 +12,12 @@
 
 #include "printf.h"
 
-void	nbr_to_upstr(long long value, long long base, char **str)
+void	nbr_to_uupstr(unsigned long long value, unsigned long long base, char **str)
 {
     if (value >= base)
     {
-        nbr_to_upstr(value / base, base, str);
-        nbr_to_upstr(value % base, base, str);
+        nbr_to_uupstr(value / base, base, str);
+        nbr_to_uupstr(value % base, base, str);
     }
     else
     {
@@ -29,12 +29,12 @@ void	nbr_to_upstr(long long value, long long base, char **str)
     }
 }
 
-void	nbr_to_lowstr(long long value, long long base, char **str)
+void	nbr_to_llowstr(unsigned long long value, unsigned long long base, char **str)
 {
     if (value >= base)
     {
-        nbr_to_lowstr(value / base, base, str);
-        nbr_to_lowstr(value % base, base, str);
+        nbr_to_llowstr(value / base, base, str);
+        nbr_to_llowstr(value % base, base, str);
     }
     else
     {
@@ -46,7 +46,7 @@ void	nbr_to_lowstr(long long value, long long base, char **str)
     }
 }
 
-char	*ft_itoa_long(long long value, int base, char mod)
+char	*ft_itoa_unsigned(unsigned long long value, int base, char mod)
 {
     char	*str;
     char	*p;
@@ -60,7 +60,7 @@ char	*ft_itoa_long(long long value, int base, char mod)
         i++;
     }
     p = str;
-    if (value < 0)
+    /*if (value < 0)
     {
         if (base == 10)
         {
@@ -68,10 +68,10 @@ char	*ft_itoa_long(long long value, int base, char mod)
             p++;
         }
         value *= -1;
-    }
+    }*/
     if (base > 1 && base < 17 && mod == 'X')
-        nbr_to_upstr((long long)value, (long long)base, &p);
+        nbr_to_uupstr((unsigned long long)value, (unsigned long long)base, &p);
     else if ((base > 1 && base < 17) || mod == 'x')
-        nbr_to_lowstr((long long)value, (long long)base, &p);
+        nbr_to_llowstr((unsigned long long)value, (unsigned long long)base, &p);
     return (str);
 }

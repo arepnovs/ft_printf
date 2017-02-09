@@ -14,8 +14,8 @@ void    bzero_params(t_specs *params)
     params->width = 0;
     params->prec = 0;
     params->neg = 0;
+    params->percent = 0;
 }
-
 
 int     len_cmp(int a, int b, int c)
 {
@@ -46,15 +46,20 @@ char    *Ox_witchery(char *str, t_specs params)
 {
     char *X_pref;
     char *x_pref;
+    char *o_pref;
     
     X_pref = ft_strnew(2);
     x_pref = ft_strnew(2);
+    o_pref = ft_strnew(1);
     X_pref = "0X";
     x_pref = "0x";
-    if (params.type == 'x' || params.type == 'o' || params.type == 'p')
+    o_pref = "0";
+    if (params.type == 'x' || params.type == 'p')
         str = ft_strjoin(x_pref, str);
     else if (params.type == 'X')
         str = ft_strjoin(X_pref, str);
+    else if (params.type == 'o')
+        str = ft_strjoin(o_pref, str);
     return(str);
 }
 
