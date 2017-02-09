@@ -49,6 +49,8 @@ char	*ft_itoa_long(long long value, int base, char mod);
 void    print_unint(va_list *args, t_specs params, t_flags flags);
 char    *str_magic(t_specs params, t_flags flags, int res_len, char *res);
 char    *str_sorcery(char *str, t_specs params, t_flags flags);
+void    print_char(va_list args, t_specs params, t_flags flags);
+char    *char_voodoo(t_specs params, t_flags flags, char *str);
 
 
 #endif

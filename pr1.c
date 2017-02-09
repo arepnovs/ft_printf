@@ -2,16 +2,16 @@
 
 void    go_to(va_list *args, t_specs params, t_flags flags)
 {
-    if (params.type == 'd' || params.type == 'D' || params.type == 'i')
+    if (params.type == 'd' || params.type == 'D' || params.type == 'i' || params.type == 'p')
     {
         print_int(args, params, flags);
     }
     else if (params.type == 'x' || params.type == 'X' || params.type == 'o'
              || params.type == 'O' || params.type == 'u' || params.type == 'U')
         print_unint(args, params, flags);
-    /*else if (params.type == 'c' || params.type == 'C')
-        //goto char;
-    else if (params.type == 'x' || params.type == 'X')
+    else if (params.type == 'c' || params.type == 'C' || params.type == 's' || params.type == 'S')
+        print_char(args, params, flags);
+    /*else if (params.type == 'x' || params.type == 'X')
         //goto hex;
     else if (params.type == 'o' || params.type == 'O')
         //goto octo;
@@ -27,16 +27,15 @@ void     get_specs(char *set, va_list *args)
     t_flags flags;
     
     bzero_params(&params);
-    if (set)
-    {
+    //if (set)
+    //{
     params.flags = get_flags(set);
     flags = org_flags(params.flags);
     params.width = get_width(set);
     params.prec = get_precision(set);
     params.len = get_length(set);
-    //printf("param = %s\n", params.len);
     params.type = get_types(set);
-    }
+   // }
     go_to(args, params, flags);
 }
 

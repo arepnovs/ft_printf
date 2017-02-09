@@ -51,9 +51,9 @@ char    *Ox_witchery(char *str, t_specs params)
     x_pref = ft_strnew(2);
     X_pref = "0X";
     x_pref = "0x";
-    if (/*flags.hash == 1 && */(params.type == 'x' || params.type == 'o'))
+    if (params.type == 'x' || params.type == 'o' || params.type == 'p')
         str = ft_strjoin(x_pref, str);
-    else if (/*flags.hash == 1 && */params.type == 'X')
+    else if (params.type == 'X')
         str = ft_strjoin(X_pref, str);
     return(str);
 }
@@ -63,11 +63,9 @@ char    *str_magic(t_specs params, t_flags flags, int res_len, char *res)
     char *str;
     int len;
     int i;
-    int lowlen;
     
     i = 1;
-    //printf("ressss = |%s\n", res);
-    if (params.prec == 0 && ft_strcmp(res, "0\0") == 0)
+    if (params.prec == -1 && ft_strcmp(res, "0\0") == 0)
     {
         str = ft_strnew(0);
         return(str);
@@ -80,13 +78,12 @@ char    *str_magic(t_specs params, t_flags flags, int res_len, char *res)
     }
     if ((params.neg == 1 || ((flags.plus == 1 || flags.space == 1) && params.neg != 1))
         && (params.type != 'x' && params.type != 'X' && params.type != 'o' && params.type != 'O'
-            && params.type != 'u' && params.type != 'U'))
+            && params.type != 'u' && params.type != 'U' && params.type != 'p'))
         len++;
     str = ft_strnew(len);
     ft_zero(str, len, '0');
-    //printf("params.type = %c\n", params.type);
     if (params.type != 'x' && params.type != 'X' && params.type != 'o' && params.type != 'O'
-        && params.type != 'u' && params.type != 'U')
+        && params.type != 'u' && params.type != 'U' && params.type != 'p')
     {
         if ((flags.minus == 1 && params.neg == 1) || (params.prec == 0 && params.neg == 1) || params.neg == 1)
             str[0] = '-';
@@ -106,12 +103,9 @@ char    *str_magic(t_specs params, t_flags flags, int res_len, char *res)
         res++;
         i++;
     }
-    if (flags.hash == 1 && (params.type == 'x' || params.type == 'X'
-        || params.type == 'o' || params.type == 'O'))
+    if (params.type == 'p' || (flags.hash == 1 && (params.type == 'x' || params.type == 'X'
+        || params.type == 'o' || params.type == 'O')))
         str = Ox_witchery(str, params);
-    //printf("ressss = |%s\n", str);
-    /*if (params.prec == 0 && ft_strcmp(res, "0"))
-        str = ft_strnew(0);*/
     return(str);
 }
 

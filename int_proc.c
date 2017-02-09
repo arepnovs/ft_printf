@@ -8,17 +8,16 @@
 char    *proc_width(t_specs params, t_flags flags, char *res)
 {
     char *str;
-    char *ftr;
     int len;
     int res_len;
 
     res_len = ft_strlen(res);
-    ftr = str_magic(params, flags, res_len, res);
+    str = str_magic(params, flags, res_len, res);
     //printf("ftr = %s\n", ftr);
     //printf("width = %d\n", params.width);
     if (params.width != 0 && params.width > res_len && params.width > params.prec)
-        ftr = str_sorcery(ftr, params, flags);
-    return(ftr);
+        str = str_sorcery(str, params, flags);
+    return(str);
 }
 
 long long	proc_len(va_list args, t_specs params)
@@ -42,6 +41,8 @@ long long	proc_len(va_list args, t_specs params)
             return ((long long)va_arg(args, long));
         else if (ft_strcmp(params.len, "ll") == 0)
             return (va_arg(args, long long));
+        else if (params.type == 'p')
+            return ((long long)va_arg(args, void*));
     }
     return ((long long)va_arg(args, int));
 }
@@ -61,10 +62,11 @@ void    print_int(va_list *args, t_specs params, t_flags flags)
     }
     if(params.type == 'd' || params.type == 'i' || params.type == 'D')
         res = ft_itoa_long(f, 10, params.type);
-    else if(params.type == 'x' || params.type == 'X')
+    else if(params.type == 'x' || params.type == 'X' || params.type == 'p')
         res = ft_itoa_long(f, 16, params.type);
     else if(params.type == 'o' || params.type == 'O')
         res = ft_itoa_long(f, 8, params.type);
+    //printf("ressss = |%s\n", res);
     str = proc_width(params, flags, res);
    // proc_flags(flags, params, str, res);
     printf("str = |%s\n", str);

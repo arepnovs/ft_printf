@@ -59,10 +59,12 @@ int    get_width(char *str)
 int    get_precision(char * str)
 {
     int i;
+    int f;
     char *o_prec;
     int res;
     
     i = 0;
+    f = 0;
     o_prec = ft_strnew(0);
     while(str[i])
     {
@@ -71,6 +73,7 @@ int    get_precision(char * str)
             ft_bzero(o_prec, ft_strlen(o_prec));
         if(str[i] == '.')
         {
+            f++;
             i++;
             while (str[i] >= '0' && str[i] <= '9')
             {
@@ -82,8 +85,7 @@ int    get_precision(char * str)
         i++;
     }
     res = ft_atoi(o_prec);
-    //printf("!!!!!!!prec = %d\n", res);
-    return(res);
+    return((res == 0 && f != 0) ? -1 : res);
 }
 
 char    *get_length(char *str)
