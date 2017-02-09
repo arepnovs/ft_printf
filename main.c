@@ -55,15 +55,6 @@ int main()
     ft_printf("1     |% +50p\n", "abcd");
     ft_printf("1     |%.50p\n", "abcd");
     ft_printf("1     |%-50p\n", "abcd");
-    ft_printf("1     |%50.70p\n", "abcd");
-    
-    printf("1     |%-10hyys\n", "abcd");
-    printf("1     |%.1s\n", "abcd");
-    printf("1     |%.10s\n", "abcd");
-    printf("1     |%p\n", "abcd");
-    printf("1     |% +50p\n", "abcd");
-    printf("1     |%.50p\n", "abcd");
-    printf("1     |%-50p\n", "abcd");
-    printf("1     |%50.70p\n", "abcd");*/
+    ft_printf("1     |%50.70p\n", "abcd");*/
     return(0);
 }
