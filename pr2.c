@@ -108,7 +108,7 @@ char    *str_magic(t_specs params, t_flags flags, int res_len, char *res)
         res++;
         i++;
     }
-    if (params.type == 'p' || (flags.hash == 1 && (params.type == 'x' || params.type == 'X'
+    if (params.type == 'p' || (flags.hash == 1 && ft_atoi(str) != 0 &&(params.type == 'x' || params.type == 'X'
         || params.type == 'o' || params.type == 'O')))
         str = Ox_witchery(str, params);
     return(str);

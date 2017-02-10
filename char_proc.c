@@ -4,7 +4,6 @@
 char    *char_voodoo(t_specs params, t_flags flags, char *str, int res_len)
 {
     char *ftr;
-    char *prec_str;
     
     if (params.prec == -1)
     {
@@ -29,7 +28,7 @@ char    *char_voodoo(t_specs params, t_flags flags, char *str, int res_len)
 
 void    print_char(va_list *args, t_specs params, t_flags flags, int *ret)
 {
-    char *str;
+    char *str = NULL;
     char f;
     int res_len;
     
