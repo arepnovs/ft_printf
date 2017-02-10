@@ -4,6 +4,8 @@
 # include "libft/libft.h"
 # include <stdio.h>
 # include <stdarg.h>
+# include <stdint.h>
+# include <stddef.h>
 
 typedef struct		s_specs
 {
@@ -13,7 +15,7 @@ typedef struct		s_specs
     char            *len;
     char            type;
     int             neg;
-    int             percent;
+    char            *pct;
 }					t_specs;
 
 typedef struct		s_flags
@@ -54,6 +56,11 @@ void    print_char(va_list *args, t_specs params, t_flags flags, int *ret);
 char    *char_voodoo(t_specs params, t_flags flags, char *str, int res_len);
 char	*ft_itoa_long(long long value, int base, char mod);
 char	*ft_itoa_unsigned(unsigned long long value, int base, char mod);
+void    get_pct(char *str, va_list *args, int *ret);
+void    ppcent(char *str, va_list *args, int *ret);
+int     check_pct(char *str);
+void	 get_pct_specs(char *set, va_list *args, char *res, int *ret);
+
 
 
 #endif

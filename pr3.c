@@ -21,9 +21,16 @@ unsigned long long	proc_unlen(va_list args, t_specs params)
             return ((unsigned long long)va_arg(args, unsigned long));
         else if (ft_strcmp(params.len, "ll") == 0)
             return (va_arg(args, unsigned long long));
+        else if (ft_strcmp(params.len, "j") == 0)
+            return ((unsigned long long)va_arg(args, uintmax_t));
+        else if (ft_strcmp(params.len, "z") == 0)
+            return ((unsigned long long)va_arg(args, size_t));
+        else if (ft_strcmp(params.len, "t") == 0)
+            return ((unsigned long long)va_arg(args, ptrdiff_t));
     }
     return ((params.type == 'O' || params.type == 'U') ?
-            (unsigned long long)va_arg(args, unsigned long) : (unsigned long long)va_arg(args, unsigned int));
+            (unsigned long long)va_arg(args, unsigned long)
+            : (unsigned long long)va_arg(args, unsigned int));
 }
 
 
@@ -42,5 +49,6 @@ void    print_unint(va_list *args, t_specs params, t_flags flags, int *ret)
     str = proc_width(params, flags, res);
     //proc_flags(flags, params, str, res);
     *ret = *ret + ft_strlen(str);
-    printf("str = |%s\n", str);
+    printf("%s", str);
+    //printf("str = |%s\n", str);
 }

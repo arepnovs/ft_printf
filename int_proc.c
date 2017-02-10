@@ -1,9 +1,5 @@
 #include "printf.h"
 
-/*void    proc_flags(t_flags flags, t_specs params, char *str, char *res)
-{
-    
-}*/
 
 char    *proc_width(t_specs params, t_flags flags, char *res)
 {
@@ -25,7 +21,7 @@ long long	proc_len(va_list args, t_specs params)
     signed char	c;
     short int	s_i;
     
-    if(params.len)
+    if(params.len && params.type != 'p')
     {
         if (ft_strcmp(params.len, "hh") == 0 && (params.type != 'D'))
         {
@@ -41,6 +37,12 @@ long long	proc_len(va_list args, t_specs params)
             return ((long long)va_arg(args, long));
         else if (ft_strcmp(params.len, "ll") == 0)
             return (va_arg(args, long long));
+        else if (ft_strcmp(params.len, "j") == 0)
+            return ((long long)va_arg(args, intmax_t));
+        else if (ft_strcmp(params.len, "z") == 0)
+            return ((long long)va_arg(args, size_t));
+        else if (ft_strcmp(params.len, "t") == 0)
+            return ((long long)va_arg(args, ptrdiff_t));
     }
     else if (params.type == 'p')
         return ((long long)va_arg(args, void*));
@@ -55,7 +57,7 @@ void    print_int(va_list *args, t_specs params, t_flags flags, int *ret)
     char *str;
     
     f = proc_len(*args, params);
-    //printf("num = %lld\n", f);
+    //printf("f = |%lld\n", f);
     if(f < 0)
     {
         f = -f;
@@ -63,16 +65,13 @@ void    print_int(va_list *args, t_specs params, t_flags flags, int *ret)
     }
     if(params.type == 'd' || params.type == 'i' || params.type == 'D')
         res = ft_itoa_long(f, 10, params.type);
-    else if(params.type == 'x' || params.type == 'X' || params.type == 'p')
+    else if(params.type == 'p')
         res = ft_itoa_long(f, 16, params.type);
-    else if(params.type == 'o' || params.type == 'O')
-        res = ft_itoa_long(f, 8, params.type);
     //printf("ressss = |%s\n", res);
     str = proc_width(params, flags, res);
     *ret = *ret + ft_strlen(str);
-    //printf("ret = |%d\n", *ret);
-   // proc_flags(flags, params, str, res);
-    printf("str = |%s\n", str);
+    printf("%s", str);
+    //printf("my = |%s\n", str);
 }
 
 

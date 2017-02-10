@@ -26,6 +26,22 @@ t_flags     org_flags(char *str)
     return(org);
 }
 
+int check_pct(char *str)
+{
+    int i;
+    int p;
+    
+    p = 0;
+    i = 0;
+    while (str[i])
+    {
+        if (str[i] == '%')
+            p++;
+        i++;
+    }
+    return ((p > 1) ? 1 : 0);
+}
+
 int		rep_check(char *str, char c, int j)
 {
     int i;
@@ -50,11 +66,11 @@ int     check_flags(char c)
     
     i = 0;
     flags = "+-0 #";
-    while(*flags)
+    while(flags[i])
     {
-        if(*flags == c)
+        if(flags[i] == c)
             return(1);
-        flags++;
+        i++;
     }
     return(0);
 }
@@ -65,7 +81,7 @@ int     check_len(char c)
     int i;
     
     i = 0;
-    len = "hlL";
+    len = "hlLjzt";
     while(*len)
     {
         if(*len == c)

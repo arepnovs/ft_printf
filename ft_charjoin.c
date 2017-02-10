@@ -19,7 +19,6 @@ char		*ft_charjoin(const char *s1, const char s2)
 	char	*res;
 
 	i = 0;
-	//j = 0;
 	if (s1 && s2)
 	{
 		res = (char *)malloc((ft_strlen(s1) +

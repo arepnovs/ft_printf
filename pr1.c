@@ -11,6 +11,8 @@ void	go_to(va_list *args, t_specs params, t_flags flags, int *ret)
 	else if (params.type == 'c' || params.type == 'C'
              || params.type == 's' || params.type == 'S')
 		print_char(args, params, flags, ret);
+    else if (params.type == '%')
+        print_char(args, params, flags, ret);
 }
 
 void	 get_specs(char *set, va_list *args, int *ret)
@@ -25,6 +27,7 @@ void	 get_specs(char *set, va_list *args, int *ret)
 	params.prec = get_precision(set);
 	params.len = get_length(set);
 	params.type = get_types(set);
+    //get_percent(set, args, ret);
 	go_to(args, params, flags, ret);
 }
 
@@ -43,19 +46,20 @@ int		get_args(va_list *args, const char *format)
 	{
 		while(format[i] != '%' && i < len && format[i] != '\0')
         {
+            printf("%c", format[i]);
 			i++;
             ret++;
         }
-		if(format[i] == '%' && format[i] != '\0' && i < len)
+		if(format[i] == '%'/* && format[i + 1] != '%' && format[i - 1] != '%' */&& format[i] != '\0' && i < len)
 		{
-			i++;
+			//i++;
 			while(check_specs(format[i]) != 1 && i < len && format[i] != '\0')
 			{
 				set = ft_charjoin(set, format[i]);
 				i++;
 			}
 			set = ft_charjoin(set, format[i]);
-			get_specs(set, args, &ret);
+            (check_pct(set) == 0) ? get_specs(set, args, &ret) : get_pct(set, args, &ret);
 			ft_bzero(set, ft_strlen(set));
 		}
 		i++;

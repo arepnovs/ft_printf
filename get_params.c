@@ -14,11 +14,80 @@ char    *get_flags(char *str)
             while (str[i] >= '0' && str[i ] <= '9')
                 i++;
         }
-        if (check_flags(str[i]) == 1 && rep_check(str, str[i], i) != 0 && str[i] != '\0')
+        if (check_flags(str[i]) == 1 && rep_check(o_flags, str[i], i) != 0
+            && str[i] != '\0')
             o_flags = ft_charjoin(o_flags, str[i]);
         i++;
     }
     return(o_flags);
+}
+
+void    get_pct(char *str, va_list *args, int *ret)
+{
+    char *pc;
+    int i;
+    int f;
+    
+    i = 0;
+    f = 1;
+    pc = ft_strnew(0);
+    while(str[i])
+    {
+        while (str[i] && f <= 2)
+        {
+            pc = ft_charjoin(pc, str[i]);
+            if (str[i + 1] == '%')
+                f++;
+            i++;
+        }
+        if(check_specs(pc[ft_strlen(pc) - 1]) != 1
+           || (check_specs(pc[ft_strlen(pc) - 1]) == 1 && f >= 2))
+            ppcent(pc, args, ret);
+        else
+            get_specs(pc, args, ret);
+        pc = ft_strnew(0);
+        f = 1;
+    }
+}
+
+void	 get_pct_specs(char *set, va_list *args, char *res, int *ret)
+{
+    t_specs params;
+    t_flags flags;
+    
+    bzero_params(&params);
+    params.flags = get_flags(set);
+    flags = org_flags(params.flags);
+    params.width = get_width(set);
+    params.prec = get_precision(set);
+    params.len = get_length(set);
+    params.type = get_types(set);
+    params.pct = res;
+    go_to(args, params, flags, ret);
+}
+
+
+void ppcent(char *str, va_list *args, int *ret)
+{
+    char *res;
+    char *specs;
+    int i;
+    int f;
+    
+    i = 0;
+    f = 0;
+    specs = ft_strnew(0);
+    while (f < 2 && str[i])
+    {
+        if (str[i] == '%')
+            f++;
+        if (f != 2)
+            specs = ft_charjoin(specs, str[i]);
+        i++;
+    }
+    res = ft_strsub(str, i - 1, ft_strlen(str));
+    specs = ft_charjoin(specs, '%');
+    get_pct_specs(specs, args, res, ret);
 }
 
 int    get_width(char *str)
@@ -113,7 +182,6 @@ char    *get_length(char *str)
     }
     else if (raw_len[len - 1] == 'L')
         o_len = ft_charjoin(o_len, raw_len[len - 1]);
-    //free(raw_len);
     return(o_len);
 }
 

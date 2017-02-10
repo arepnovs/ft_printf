@@ -8,15 +8,26 @@
 int main()
 {
     short int a = 59;
-    char c = 'c';
-    long long l = 9494949499949;
+    char l = 'c';
     long long g = 9494949499949;
-    //ft_printf("3  |%#o\n",126);
+    int c = 949;
+    char *str = "djhjk";
+    char k = 'k';
+    //ft_printf("3  |% s\n","absd");
     //ft_printf("3  |%hU\n",-999999999999999);
     //ft_printf("3  |%hhU\n",-999999999999999);
     //ft_printf("3  |%hhO\n",-999999999999999);
-    ft_printf("3  |%p\n",l);
-    ft_printf("3  |%p\n",g);
+    //ft_printf("3  |%.p\n",0);
+    ft_printf("my = %d\n",ft_printf("my = |%%10+0%3%0d\n",165));
+    ft_printf("my = |%d\n",165);
+    ft_printf("my   |%0.5%10%0d\n",165);
+    ft_printf("my = |%%10+0%3%0d\n",165);
+    ft_printf("my = |%%%10+0%10%0d\n",165);
+    ft_printf("my = |%%10+0%%%%%10%0d\n",165);
+    /*ft_printf("my = |%p\n",&l);
+    ft_printf("my = |%p\n",&l);
+    ft_printf("my = |%p\n",&l);
+    ft_printf("my = |%p\n",&l);*/
     /*ft_printf("3  |%hhx\n",999999999999999);
     ft_printf("3  |%hhX\n",999999999999999);
     ft_printf("3  |%hhu\n",999999999999999);
@@ -25,36 +36,20 @@ int main()
     ft_printf("3  |%hhO\n",999999999999999);*/
 
     //xsprintf("3  |%#o\n",126);
-    //printf("1  |%d\n", -100);
-    printf("3  |%p\n",l);
-    printf("1  |%p\n",g);
+    //printf("1     |% s\n","absd");
+    printf("%d\n",printf("my = |%%10+0%3%0d\n",165));
+    printf("1    |%10+0%10%0d\n",165);
+    printf("1    |%0.5%10%0d\n",165);
+    printf("my = |%%10+0%3%0d\n",165);
+    printf("my = |%%%10+0%10%0d\n",165);
+    printf("my = |%%10+0%%%%%10%0d\n",165);
+    //printf("1  |%.#%.#%.%\n",&l);
+
     /*printf("3  |%hhx\n",999999999999999);
     printf("3  |%hhX\n",999999999999999);
     printf("3  |%hhu\n",999999999999999);
     printf("3  |%hhU\n",999999999999999);
     printf("3  |%hho\n",999999999999999);
-    printf("3  |%hhO\n",999999999999999);
-    /*ft_printf("123456789  |%+10.mmm7kkkd\n", 165);
-    ft_printf("1  |%0.10i\n", -165);
-    ft_printf("2  |%+0.10  12i\n", 165);
-    ft_printf("2  |%+10 .4i\n", -165);
-    ft_printf("3  |%10 0.4i\n", 165);
-    ft_printf("3  |%+010.4i\n",-165);
-    
-    printf("1  |%+10.mmm7kkkd\n", 165);
-    printf("1  |%0.10i\n", -165);
-    printf("2  |%+0.10  12i\n", 165);
-    printf("2  |%+10 .4i\n", -165);
-    printf("3  |%10 0.4i\n", 165);
-    printf("3  |%+010.4i\n",-165);
-    
-    /*ft_printf("1     |%-10hyys\n", "abcd");
-    ft_printf("1     |%.1s\n", "abcd");
-    ft_printf("1     |%.10s\n", "abcd");
-    ft_printf("1     |%p\n", "abcd");
-    ft_printf("1     |% +50p\n", "abcd");
-    ft_printf("1     |%.50p\n", "abcd");
-    ft_printf("1     |%-50p\n", "abcd");
-    ft_printf("1     |%50.70p\n", "abcd");*/
+    printf("3  |%hhO\n",999999999999999);*/
     return(0);
 }
