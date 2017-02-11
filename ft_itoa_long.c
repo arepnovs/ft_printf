@@ -54,6 +54,8 @@ char	*ft_itoa_long(long long value, int base, char mod)
     
     i = 0;
     str = (char*)malloc(sizeof(char) * 33);
+    if (value - 1 == 9223372036854775807)
+        return ("9223372036854775808");
     while (i < 33)
     {
         str[i] = 0;

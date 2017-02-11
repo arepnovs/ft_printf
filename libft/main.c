@@ -18,12 +18,14 @@ int main()
     //ft_printf("3  |%hhU\n",-999999999999999);
     //ft_printf("3  |%hhO\n",-999999999999999);
     //ft_printf("3  |%.p\n",0);
-    ft_printf("my = |%.2d\n",4242);
-    ft_printf("my = |%d\n",165);
-    /*ft_printf("my   |%0.5%10%0d\n",165);
+    //ft_printf("my = %d\n",ft_printf("my = |%%10+0%3%0d\n",165));
+    ft_printf("%2c", 0);
+    //ft_printf("my = |%.2d\n",4242);
+    /*ft_printf("my = |%jx\n",-4294967297);
+    ft_printf("my   |%0.5%10%0d\n",165);
     ft_printf("my = |%%10+0%3%0d\n",165);
     ft_printf("my = |%%%10+0%10%0d\n",165);
-    ft_printf("my = |%%10+0%%%%%10%0d\n",165);
+    ft_printf("my = |%%10+0%%%%%10%0d\n",165);*/
     /*ft_printf("my = |%p\n",&l);
     ft_printf("my = |%p\n",&l);
     ft_printf("my = |%p\n",&l);
@@ -34,17 +36,21 @@ int main()
     ft_printf("3  |%hhU\n",999999999999999);
     ft_printf("3  |%hho\n",999999999999999);
     ft_printf("3  |%hhO\n",999999999999999);*/
-
+    printf("\n");
+    printf("%2c", 0);
+    printf("\n");
+    //printf("%c", 42);
+    //printf("gg = |%.2d\n",4242);
     //xsprintf("3  |%#o\n",126);
     //printf("1     |% s\n","absd");
-    printf("gg = |%.2d\n",4242);
-    printf("gg = |%d\n",165);
-    /*printf("%d\n",printf("my = |%%10+0%3%0d\n",165));
-    printf("1    |%10+0%10%0d\n",165);
+    //printf("%d\n",printf("my = |%%10+0%3%0d\n",165));
+    /*printf("1    |%#x\n",0);
+    printf("1    |%#o\n",0);
+    printf("my = |%jx\n",-4294967297);
     printf("1    |%0.5%10%0d\n",165);
     printf("my = |%%10+0%3%0d\n",165);
     printf("my = |%%%10+0%10%0d\n",165);
-    printf("my = |%%10+0%%%%%10%0d\n",165);
+    printf("my = |%%10+0%%%%%10%0d\n",165);*/
     //printf("1  |%.#%.#%.%\n",&l);
 
     /*printf("3  |%hhx\n",999999999999999);

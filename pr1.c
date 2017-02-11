@@ -46,21 +46,25 @@ int		get_args(va_list *args, const char *format)
 	{
 		while(format[i] != '%' && i < len && format[i] != '\0')
         {
-            printf("%c", format[i]);
+            write(1, &format[i], 1);
+            //printf("%c", format[i]);
 			i++;
             ret++;
         }
-		if(format[i] == '%'/* && format[i + 1] != '%' && format[i - 1] != '%' */&& format[i] != '\0' && i < len)
+		if(format[i] == '%' && format[i] != '\0' && i < len)
 		{
-			//i++;
 			while(check_specs(format[i]) != 1 && i < len && format[i] != '\0')
 			{
 				set = ft_charjoin(set, format[i]);
 				i++;
 			}
-			set = ft_charjoin(set, format[i]);
+            if (format[i] != '\0')
+                set = ft_charjoin(set, format[i]);
+            //write(1, "ddd\n", 4);
             (check_pct(set) == 0) ? get_specs(set, args, &ret) : get_pct(set, args, &ret);
+            //write(1, "aaa\n", 4);
 			ft_bzero(set, ft_strlen(set));
+            //write(1, "bbb\n", 4);
 		}
 		i++;
 	}

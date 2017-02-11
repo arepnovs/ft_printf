@@ -33,6 +33,7 @@ int check_pct(char *str)
     
     p = 0;
     i = 0;
+    //ft_putstr(str);
     while (str[i])
     {
         if (str[i] == '%')

@@ -49,6 +49,7 @@ void    print_unint(va_list *args, t_specs params, t_flags flags, int *ret)
     str = proc_width(params, flags, res);
     //proc_flags(flags, params, str, res);
     *ret = *ret + ft_strlen(str);
-    printf("%s", str);
+    ft_putstr(str, params, ret);
+    //printf("%s", str);
     //printf("str = |%s\n", str);
 }

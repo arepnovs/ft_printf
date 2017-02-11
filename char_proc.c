@@ -5,7 +5,7 @@ char    *char_voodoo(t_specs params, t_flags flags, char *str, int res_len)
 {
     char *ftr;
     
-    if (params.prec == -1)
+    if (params.prec == -1 && ft_strlen(str) == 0)
     {
         str = ft_strnew(0);
         return(str);
@@ -37,17 +37,20 @@ void    print_char(va_list *args, t_specs params, t_flags flags, int *ret)
         if (params.type == 'c' || params.type == 'C')
         {
             f = (char)va_arg(*args, int);
-            str = ft_strnew(1);
+            str = ft_strnew(0);
             str[0] = f;
         }
         else if (params.type == 's' || params.type == 'S')
+        {
             str = va_arg(*args, char*);
+            if (str == NULL)
+                str = "(null)";
+        }
     }
     else
         str = params.pct;
-    res_len = ft_strlen(str);
+    res_len = (str == NULL) ? 0 : ft_strlen(str);
     str = char_voodoo(params, flags, str, res_len);
     *ret = *ret + ft_strlen(str);
-    printf("%s", str);
-    //printf("str = |%s\n", str);
+    ft_putstr(str, params, ret);
 }

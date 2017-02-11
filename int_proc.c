@@ -70,7 +70,8 @@ void    print_int(va_list *args, t_specs params, t_flags flags, int *ret)
     //printf("ressss = |%s\n", res);
     str = proc_width(params, flags, res);
     *ret = *ret + ft_strlen(str);
-    printf("%s", str);
+    ft_putstr(str, params, ret);
+    //printf("%s", str);
     //printf("my = |%s\n", str);
 }
 

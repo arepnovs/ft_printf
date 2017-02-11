@@ -69,18 +69,17 @@ char    *str_magic(t_specs params, t_flags flags, int res_len, char *res)
     int i;
     
     i = 1;
-    if (params.prec == -1 && ft_strcmp(res, "0\0") == 0)
+    //printf("prec = %d\n", params.prec);
+    if (params.prec == -1 && (ft_strcmp(res, "0") == 0)/* && (params.type != 'o' && params.type != 'O')*/)
     {
         str = ft_strnew(0);
-        if (params.type != 'p')
+        if ((params.type == 'o' || params.type == 'O') && flags.hash == 1)
+            return("0");
+        else if (params.type != 'p')
             return(str);
     }
     len = (params.prec > res_len) ? params.prec : res_len;
-    if (params.prec == 0)
-    {
-        len = res_len;
-        i = (params.neg == 1) ? 1 : 0;
-    }
+    i = (params.neg == 1) ? 1 : 0;
     if ((params.neg == 1 || ((flags.plus == 1 || flags.space == 1) && params.neg != 1))
         && (params.type != 'x' && params.type != 'X' && params.type != 'o' && params.type != 'O'
             && params.type != 'u' && params.type != 'U' && params.type != 'p'))
