@@ -1,7 +1,7 @@
 #ifndef PRINTF_H
 # define PRINTF_H
 
-//# include "libft/libft.h"
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -70,6 +70,8 @@ char				*ft_strjoin(const char *s1, const char *s2);
 size_t				ft_strlen(const char *str);
 char				*ft_strnew(size_t size);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
-void	ft_putstr(char *str, t_specs params, int *ret);
+void	ft_putcharf(char *str, t_specs params, int *ret);
+void	ft_putstr(char *str);
+int     char_crutch(char* str);
 
 #endif

@@ -45,11 +45,13 @@ void    print_unint(va_list *args, t_specs params, t_flags flags, int *ret)
         res = ft_itoa_unsigned(proc_unlen(*args, params), 8, params.type);
      else if (params.type == 'u' || params.type == 'U')
          res = ft_itoa_unsigned(proc_unlen(*args, params), 10, params.type);
+     else if (params.type == 'u')
+         res = ft_itoa_unsigned(proc_unlen(*args, params), 2, params.type);
     //printf("res = %s\n", res);
     str = proc_width(params, flags, res);
     //proc_flags(flags, params, str, res);
     *ret = *ret + ft_strlen(str);
-    ft_putstr(str, params, ret);
+    ft_putstr(str);
     //printf("%s", str);
     //printf("str = |%s\n", str);
 }
