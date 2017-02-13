@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "printf.h"
 
 char		*ft_charjoin(const char *s1, const char s2)
 {

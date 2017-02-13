@@ -98,7 +98,7 @@ int     check_specs(char c)
     int i;
     
     i = 0;
-    specs = "sSpdDioOuUxXcC";
+    specs = "sSpdDioOuUxXcCb";
     while(*specs)
     {
         if(*specs == c)
