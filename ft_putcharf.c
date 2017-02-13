@@ -30,23 +30,27 @@ void	ft_putcharf(char *str, t_specs params, int *ret)
 {
 	size_t	i;
     size_t  j;
+    int len;
+    
+    len = ft_strlen(str);
 
-    //i = (params.type == 'c' && params.width > 1) ? 1 : 0;
     i = 0;
-    if (params.type == 'c' && params.width > 1 && char_crutch(str) == 1)
+    if (params.type == 'c' && params.width > 2 && char_crutch(str) == 1)
     {
         i = 1;
         j = params.width + 1;
     }
-    else if (params.width > ft_strlen(str))
+    else if (params.width > len)
         j = params.width;
     else
-        j = ft_strlen(str);
-    if (str[0] == '\0' && (params.type == 'c' || params.type == 'C'))
+        j = len;
+    if (str[0] == '\0')
     {
         *ret = *ret + 1;
         write(1, &str[0], 1);
     }
+    else if (params.width >= 2 && len == 1)
+        *ret = *ret + 1;
 	if (str)
 	{
 		while (i < j)

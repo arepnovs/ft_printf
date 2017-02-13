@@ -1,5 +1,23 @@
 #include "printf.h"
 
+int check_wrong(char *str)
+{
+    int i = 0;
+    
+    while (str[i])
+    {
+        if (str[i] < '0' || str[i] > '9')
+        {
+            if (check_specs(str[i]) == 0 && check_flags(str[i]) == 0 && check_len(str[i]) == 0
+            && str[i] !='.' && str[i] != '%')
+                return (i);
+        }
+        i++;
+    }
+    return(-1);
+}
+
+
 t_flags     org_flags(char *str)
 {
     t_flags org;

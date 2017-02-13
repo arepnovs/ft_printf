@@ -57,7 +57,7 @@ char    *Ox_witchery(char *str, t_specs params)
         str = ft_strjoin(x_pref, str);
     else if (params.type == 'X')
         str = ft_strjoin(X_pref, str);
-    else if (params.type == 'o')
+    else if (params.type == 'o' || params.type == 'O')
         str = ft_strjoin(o_pref, str);
     return ((params.type == 'p' && params.prec == -1) ? x_pref : str);
 }
@@ -129,13 +129,11 @@ char    *str_sorcery(char *str, t_specs params, t_flags flags)
     //printf("2str = %s\n", str);
     while (res[i])
     {
-        if ((str[0] == '+' || str[0] == '-') && res[0] == '0')
+        if ((str[0] == '+' || str[0] == '-' || str[0] == ' ') && res[0] == '0')
         {
             res[0] = str[0];
             res[ft_strlen(res) - ft_strlen(str)] = '0';
         }
-        else if (str[0] == ' ' && flags.zero == 1)
-            res[0] = str[0];
         else if (str[0] == ' ' && flags.zero != 1)
             i++;
         i++;

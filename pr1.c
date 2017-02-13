@@ -21,14 +21,20 @@ void	 get_specs(char *set, va_list *args, int *ret)
 	t_flags flags;
 	
 	bzero_params(&params);
+    //write(1, "aaa\n", 4);
 	params.flags = get_flags(set);
 	flags = org_flags(params.flags);
 	params.width = get_width(set);
-    //if (params.width < 0)
-     //   params.width = -params.width;
 	params.prec = get_precision(set);
 	params.len = get_length(set);
 	params.type = get_types(set);
+    if (check_wrong(set) != -1)
+    {
+        params.type = 'z';
+         set = ft_strsub(set, check_wrong(set), ft_strlen(set));
+        *ret = *ret + ft_strlen(set);
+        ft_putstr(set);
+    }
     //get_percent(set, args, ret);
 	go_to(args, params, flags, ret);
 }
@@ -55,15 +61,20 @@ int		get_args(va_list *args, const char *format)
         }
 		if(format[i] == '%' && format[i] != '\0' && i < len)
 		{
-			while(check_specs(format[i]) != 1 && i < len && format[i] != '\0')
+			while(check_specs(format[i]) != 1 && format[i] != '\0')
 			{
 				set = ft_charjoin(set, format[i]);
 				i++;
 			}
-            if (format[i] != '\0')
+            if (check_specs(format[i]) == 1 || format[i] == '%')
                 set = ft_charjoin(set, format[i]);
+            /*if (ft_strlen(set) == 1)
+                return(0);*/
             //write(1, "ddd\n", 4);
-            (check_pct(set) == 0) ? get_specs(set, args, &ret) : get_pct(set, args, &ret);
+            if (ft_strlen(set) == 2 && check_specs(set[1]) != 1 && set[1] !='%')
+                i = i - 2;
+            else if(set[1] != '\0')
+                (check_pct(set) == 0) ? get_specs(set, args, &ret) : get_pct(set, args, &ret);
             //write(1, "aaa\n", 4);
 			ft_bzero(set, ft_strlen(set));
             //write(1, "bbb\n", 4);
