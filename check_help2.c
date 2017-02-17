@@ -1,73 +1,73 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_help.c                                       :+:      :+:    :+:   */
+/*   check_help2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arepnovs <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/17 17:50:52 by arepnovs          #+#    #+#             */
-/*   Updated: 2017/02/17 17:50:55 by arepnovs         ###   ########.fr       */
+/*   Created: 2017/02/17 17:47:20 by arepnovs          #+#    #+#             */
+/*   Updated: 2017/02/17 17:47:33 by arepnovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		check_rep(char *str, char c, int j)
+int		check_pcpc(char c)
+{
+	char	*check;
+	int		i;
+
+	i = 0;
+	check = "sSpdDioOuUxXcCb+-0 #hlLjzt";
+	while (*check)
+	{
+		if (*check == c)
+			return (1);
+		check++;
+	}
+	return (0);
+}
+
+int		check_wrong(char *str)
 {
 	int i;
 
-	if (j == 0)
-		i = 1;
-	else
-		i = 0;
-	while (str[i] && i < j)
+	i = 0;
+	while (str[i])
 	{
-		if (str[i] == c)
-			return (0);
+		if (str[i] < '0' || str[i] > '9')
+		{
+			if (check_pcpc(str[i]) == 0 && str[i] != '.' && str[i] != '%')
+				return (i);
+		}
 		i++;
 	}
-	return (1);
+	return (-1);
 }
 
-int		check_flags(char c)
+int		check_pct(char *str)
 {
-	char	*flags;
-	int		i;
+	int i;
+	int p;
 
+	p = 0;
 	i = 0;
-	flags = "+-0 #";
-	while (flags[i])
+	while (str[i])
 	{
-		if (flags[i] == c)
-			return (1);
+		if (str[i] == '%')
+			p++;
 		i++;
 	}
-	return (0);
+	return ((p > 1) ? 1 : 0);
 }
 
-int		check_len(char c)
-{
-	char	*len;
-	int		i;
-
-	i = 0;
-	len = "hlLjzt";
-	while (*len)
-	{
-		if (*len == c)
-			return (1);
-		len++;
-	}
-	return (0);
-}
-
-int		check_specs(char c)
+int		check_undef(char c)
 {
 	char	*specs;
 	int		i;
 
 	i = 0;
-	specs = "sSpdDioOuUxXcCb";
+	specs = "poOuUxXb";
 	while (*specs)
 	{
 		if (*specs == c)

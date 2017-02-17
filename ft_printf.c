@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pr1.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arepnovs <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/17 17:51:35 by arepnovs          #+#    #+#             */
+/*   Updated: 2017/02/17 17:52:29 by arepnovs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 void	go_to(va_list args, t_specs params, t_flags flags, int *ret)
@@ -22,8 +34,8 @@ void	get_specs(char *set, va_list args, int *ret, char *z)
 	t_flags flags;
 	char	*s;
 
-	bzero_params(&params);
-	flags = org_flags(get_flags(set));
+	bzero_paraflags(&params, &flags);
+	org_flags(get_flags(set), &flags);
 	params.width = get_width(set);
 	params.prec = get_precision(set);
 	params.len = get_length(set);

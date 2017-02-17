@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unsign_and_long_proc.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arepnovs <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/17 18:07:24 by arepnovs          #+#    #+#             */
+/*   Updated: 2017/02/17 18:07:26 by arepnovs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 unsigned long long	proc_unlen2(va_list args, t_specs params)
 {
 	unsigned long long	ull;
 
+	ull = 0;
 	if (ft_strcmp(params.len, "l") == 0)
 		ull = (unsigned long long)va_arg(args, unsigned long);
 	else if (ft_strcmp(params.len, "ll") == 0)
@@ -50,6 +63,7 @@ void				print_unint(va_list args, t_specs p, t_flags f, int *ret)
 	char *res;
 	char *str;
 
+	res = NULL;
 	if (p.type == 'x' || p.type == 'X')
 		res = ft_itoa_unsigned(proc_unlen(args, p), 16, p.type);
 	else if (p.type == 'o' || p.type == 'O')
