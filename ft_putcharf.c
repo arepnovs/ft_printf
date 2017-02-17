@@ -19,7 +19,7 @@ int     char_crutch(char* str)
     i = 0;
     while (str[i])
     {
-        if (str[i] != ' ')
+        if (str[i] != ' ' && str[i] != '\0' && str[i] != '0')
             return (0);
         i++;
     }
@@ -42,6 +42,11 @@ void	ft_putcharf(char *str, t_specs params, int *ret)
     }
     else if (params.width > len)
         j = params.width;
+    else if (len > 2 && char_crutch(str) == 1)
+    {
+        i = 1;
+        j = len + 1;
+    }
     else
         j = len;
     if (str[0] == '\0')

@@ -22,14 +22,16 @@ char    *get_flags(char *str)
     return(o_flags);
 }
 
-void    get_pct(char *str, va_list *args, int *ret)
+void    get_pct(char *str, va_list args, int *ret)
 {
     char *pc;
+    char *z;
     int i;
     int f;
     
     i = 0;
     f = 1;
+    z = ft_strnew(0);
     pc = ft_strnew(0);
     while(str[i])
     {
@@ -44,20 +46,19 @@ void    get_pct(char *str, va_list *args, int *ret)
            || (check_specs(pc[ft_strlen(pc) - 1]) == 1 && f >= 2))
             ppcent(pc, args, ret);
         else
-            get_specs(pc, args, ret);
+            get_specs(pc, args, ret, z);
         pc = ft_strnew(0);
         f = 1;
     }
 }
 
-void	 get_pct_specs(char *set, va_list *args, char *res, int *ret)
+void	 get_pct_specs(char *set, va_list args, char *res, int *ret)
 {
     t_specs params;
     t_flags flags;
     
     bzero_params(&params);
-    params.flags = get_flags(set);
-    flags = org_flags(params.flags);
+    flags = org_flags(get_flags(set));
     params.width = get_width(set);
     params.prec = get_precision(set);
     params.len = get_length(set);
@@ -67,7 +68,7 @@ void	 get_pct_specs(char *set, va_list *args, char *res, int *ret)
 }
 
 
-void ppcent(char *str, va_list *args, int *ret)
+void ppcent(char *str, va_list args, int *ret)
 {
     char *res;
     char *specs;
@@ -125,7 +126,7 @@ int    get_width(char *str)
     return((ft_atoi(o_width) == 0 && ft_atoi(f_width) != 0) ? ft_atoi(f_width) : ft_atoi(o_width));
 }
 
-int    get_precision(char * str)
+int    get_precision(char *str)
 {
     int i;
     int f;

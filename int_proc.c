@@ -9,8 +9,6 @@ char    *proc_width(t_specs params, t_flags flags, char *res)
 
     res_len = ft_strlen(res);
     str = str_magic(params, flags, res_len, res);
-    //printf("ftr = %s\n", ftr);
-    //printf("width = %d\n", params.width);
     if (params.width != 0 && params.width > res_len && params.width > params.prec)
         str = str_sorcery(str, params, flags);
     return(str);
@@ -50,14 +48,13 @@ long long	proc_len(va_list args, t_specs params)
 }
 
 
-void    print_int(va_list *args, t_specs params, t_flags flags, int *ret)
+void    print_int(va_list args, t_specs params, t_flags flags, int *ret)
 {
     long long f;
     char *res;
     char *str;
     
-    f = proc_len(*args, params);
-    //printf("f = |%lld\n", f);
+    f = proc_len(args, params);
     if(f < 0)
     {
         f = -f;
@@ -67,12 +64,9 @@ void    print_int(va_list *args, t_specs params, t_flags flags, int *ret)
         res = ft_itoa_long(f, 10, params.type);
     else if(params.type == 'p')
         res = ft_itoa_long(f, 16, params.type);
-    //printf("ressss = |%s\n", res);
     str = proc_width(params, flags, res);
-    *ret = *ret + ft_strlen(str);
+    *ret = *ret + ((!str) ? 0 : ft_strlen(str));
     ft_putstr(str);
-    //printf("%s", str);
-    //printf("my = |%s\n", str);
 }
 
 

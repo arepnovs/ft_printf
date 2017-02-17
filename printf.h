@@ -8,10 +8,12 @@
 # include <stdint.h>
 # include <unistd.h>
 # include <stddef.h>
+# include <wchar.h>
+# include <wctype.h>
+# include <locale.h>
 
 typedef struct		s_specs
 {
-    char			*flags;
     int             width;
     int             prec;
     char            *len;
@@ -30,10 +32,10 @@ typedef struct		s_flags
 }					t_flags;
 
 int     ft_printf(const char *format, ...);
-void    go_to(va_list *args, t_specs params, t_flags flags, int *ret);
-void    print_int(va_list *args, t_specs params, t_flags flags, int *ret);
+void    go_to(va_list args, t_specs params, t_flags flags, int *ret);
+void    print_int(va_list args, t_specs params, t_flags flags, int *ret);
 char	*ft_charjoin(const char *s1, const char s2);
-void    get_specs(char *set, va_list *args, int *ret);
+void    get_specs(char *set, va_list args, int *ret, char *z);
 char    *get_flags(char *str);
 int     get_width(char *str);
 int     get_precision(char *str);
@@ -51,17 +53,17 @@ int     len_cmp(int a, int b, int c);
 void    ft_zero(void *s, size_t n, char c);
 void    proc_flags(t_flags flags, t_specs params, char *str, char *res);
 char	*ft_itoa_long(long long value, int base, char mod);
-void    print_unint(va_list *args, t_specs params, t_flags flags, int *ret);
+void    print_unint(va_list args, t_specs params, t_flags flags, int *ret);
 char    *str_magic(t_specs params, t_flags flags, int res_len, char *res);
 char    *str_sorcery(char *str, t_specs params, t_flags flags);
-void    print_char(va_list *args, t_specs params, t_flags flags, int *ret);
+void    print_char(va_list args, t_specs params, t_flags flags, int *ret);
 char    *char_voodoo(t_specs params, t_flags flags, char *str, int res_len);
 char	*ft_itoa_long(long long value, int base, char mod);
 char	*ft_itoa_unsigned(unsigned long long value, int base, char mod);
-void    get_pct(char *str, va_list *args, int *ret);
-void    ppcent(char *str, va_list *args, int *ret);
+void    get_pct(char *str, va_list args, int *ret);
+void    ppcent(char *str, va_list args, int *ret);
 int     check_pct(char *str);
-void	 get_pct_specs(char *set, va_list *args, char *res, int *ret);
+void	 get_pct_specs(char *set, va_list args, char *res, int *ret);
 int					ft_atoi(char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);

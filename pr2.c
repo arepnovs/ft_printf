@@ -14,6 +14,7 @@ void    bzero_params(t_specs *params)
     params->width = 0;
     params->prec = 0;
     params->neg = 0;
+    params->len = ft_strnew(0);
 }
 
 int     len_cmp(int a, int b, int c)
@@ -57,7 +58,7 @@ char    *Ox_witchery(char *str, t_specs params)
         str = ft_strjoin(x_pref, str);
     else if (params.type == 'X')
         str = ft_strjoin(X_pref, str);
-    else if (params.type == 'o' || params.type == 'O')
+    else if ((params.type == 'o' || params.type == 'O') && (params.width >= params.prec))
         str = ft_strjoin(o_pref, str);
     return ((params.type == 'p' && params.prec == -1) ? x_pref : str);
 }
@@ -117,32 +118,38 @@ char    *str_sorcery(char *str, t_specs params, t_flags flags)
 {
     char *res;
     int i;
+    int len;
     
     i = 0;
-    res = ft_strnew(params.width - ft_strlen(str));
-    if (params.prec == 0 && flags.zero == 1)
-        ft_zero(res, (params.width - ft_strlen(str)), '0');
-    else
-        ft_zero(res, (params.width - ft_strlen(str)), ' ');
-    //printf("1str = %s\n", str);
-    res = (flags.minus == 1) ? ft_strjoin(str, res) : ft_strjoin(res, str);
-    //printf("2str = %s\n", str);
-    while (res[i])
+    len = ft_strlen(str);
+    res = ft_strnew(0);
+    if (params.width >= len)
     {
-        if ((str[0] == '+' || str[0] == '-' || str[0] == ' ') && res[0] == '0')
+        res = ft_strnew(params.width - len);
+        if (params.prec == 0 && flags.zero == 1 && params.width > len)
+            ft_zero(res, (params.width - len), '0');
+        else if (params.width > len)
+            ft_zero(res, (params.width - len), ' ');
+        res = (flags.minus == 1) ? ft_strjoin(str, res) : ft_strjoin(res, str);
+        while (res[i])
         {
-            res[0] = str[0];
-            res[ft_strlen(res) - ft_strlen(str)] = '0';
-        }
-        else if (str[0] == ' ' && flags.zero != 1)
+            if ((str[0] == '+' || str[0] == '-' || str[0] == ' ') && res[0] == '0')
+            {
+               res[0] = str[0];
+              res[ft_strlen(res) - len] = '0';
+            }
+            else if (str[0] == ' ' && flags.zero != 1)
+               i++;
             i++;
-        i++;
+        }
+        if ((str[1] == 'x' || str[1] == 'X') && res[0] == '0' && flags.zero != 0)
+        {
+            res[1] = str[1];
+            res[ft_strlen(res) - len + 1] = '0';
+        }
     }
-    if ((str[1] == 'x' || str[1] == 'X') && res[0] == '0' && flags.zero != 0)
-    {
-        res[1] = str[1];
-        res[ft_strlen(res) - ft_strlen(str) + 1] = '0';
-    }
+    else
+        res = ft_strjoin(str, res);
     return (res);
 }
 
