@@ -126,7 +126,7 @@ void    print_char(va_list args, t_specs params, t_flags flags, int *ret)
     {
         if (params.type == 'c' || params.type == 'C')
         {
-            if (ft_strcmp(params.len, "l") != 0 && params.type != 'C')
+            if (ft_strcmp(params.len, "l") != 0/* && params.type != 'C'*/)
                 str[0] = (char)va_arg(args, int);
             else
                 str = ft_itow(va_arg(args, int));
