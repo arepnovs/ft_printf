@@ -75,6 +75,7 @@ int		get_precision(char *str)
 		i++;
 	}
 	res = ft_atoi(o_prec);
+	free(o_prec);
 	return ((res == 0 && f != 0) ? -1 : res);
 }
 
@@ -103,6 +104,7 @@ char	*get_length(char *str)
 	}
 	else if (raw_len[len - 1] == 'L')
 		o_len = ft_charjoin(o_len, raw_len[len - 1]);
+	free(raw_len);
 	return (o_len);
 }
 

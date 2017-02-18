@@ -51,6 +51,7 @@ void	get_specs(char *set, va_list args, int *ret, char *z)
 		*ret = *ret + ft_strlen(set) + ft_strlen(s);
 		s = ft_strjoin(s, set);
 		ft_putstr(s);
+		free(s);
 		params.type = 'z';
 	}
 	go_to(args, params, flags, ret);
@@ -77,6 +78,7 @@ void	get_sets(va_list args, const char *format, int *i, int *ret)
 		(check_pct(set) == 0) ? get_specs(set, args, ret, z)
 	: get_pct(set, args, ret);
 	free(set);
+	free(z);
 }
 
 int		get_args(va_list args, const char *format)

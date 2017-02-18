@@ -77,6 +77,8 @@ void	get_pct_parts(char *str, va_list args, int *ret)
 	res = ft_strsub(str, i - 1, ft_strlen(str));
 	specs = ft_charjoin(specs, '%');
 	get_pct_specs(specs, args, res, ret);
+	free(specs);
+	free(res);
 }
 
 void	get_wid(char *str, char **o_width, char **f_width, int *i)

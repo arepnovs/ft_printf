@@ -73,6 +73,7 @@ void				print_unint(va_list args, t_specs p, t_flags f, int *ret)
 	else if (p.type == 'u')
 		res = ft_itoa_unsigned(proc_unlen(args, p), 2, p.type);
 	str = proc_width(p, f, res);
+	free(res);
 	*ret = *ret + ((str[0] == '\0') ? 0 : ft_strlen(str));
 	ft_putstr(str);
 }

@@ -42,7 +42,6 @@ void	bzero_paraflags(t_specs *params, t_flags *flag)
 	params->width = 0;
 	params->prec = 0;
 	params->neg = 0;
-	params->len = ft_strnew(0);
 	flag->space = 0;
 	flag->zero = 0;
 	flag->plus = 0;

@@ -68,6 +68,7 @@ char	*char_voodoo(t_specs p, t_flags flags, char *str, int res_len)
 	{
 		ftr = char_kadabra(p, flags, len);
 		str = (flags.minus == 1) ? ft_strjoin(str, ftr) : ft_strjoin(ftr, str);
+		free(ftr);
 	}
 	return (str);
 }
