@@ -70,7 +70,7 @@ void				print_unint(va_list args, t_specs p, t_flags f, int *ret)
 		res = ft_itoa_unsigned(proc_unlen(args, p), 8, p.type);
 	else if (p.type == 'u' || p.type == 'U')
 		res = ft_itoa_unsigned(proc_unlen(args, p), 10, p.type);
-	else if (p.type == 'u')
+	else if (p.type == 'b')
 		res = ft_itoa_unsigned(proc_unlen(args, p), 2, p.type);
 	str = proc_width(p, f, res);
 	free(res);
