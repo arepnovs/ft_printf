@@ -61,6 +61,8 @@ char	*ft_itowstr(int *wch, int prec)
 			len = len + ft_strlen(symb);
 			if (len <= prec)
 				str = ft_strjoin(str, symb);
+			else
+				break ;
 		}
 		else
 			str = ft_strjoin(str, symb);
